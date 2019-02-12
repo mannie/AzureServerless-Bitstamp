@@ -1,0 +1,103 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Compose": {
+                "inputs": {
+                    "last": "@float(body('Parse_JSON')?['last'])",
+                    "open": "@float(body('Parse_JSON')?['open'])",
+                    "timestamp": "@body('Parse_JSON')?['timestamp']"
+                },
+                "runAfter": {
+                    "Parse_JSON": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Compose"
+            },
+            "HTTP": {
+                "inputs": {
+                    "method": "GET",
+                    "uri": "https://www.bitstamp.net/api/v2/ticker/@{triggerBody()?['ticker']}"
+                },
+                "runAfter": {},
+                "type": "Http"
+            },
+            "Parse_JSON": {
+                "inputs": {
+                    "content": "@body('HTTP')",
+                    "schema": {
+                        "properties": {
+                            "ask": {
+                                "type": "string"
+                            },
+                            "bid": {
+                                "type": "string"
+                            },
+                            "high": {
+                                "type": "string"
+                            },
+                            "last": {
+                                "type": "string"
+                            },
+                            "low": {
+                                "type": "string"
+                            },
+                            "open": {
+                                "type": "string"
+                            },
+                            "timestamp": {
+                                "type": "string"
+                            },
+                            "volume": {
+                                "type": "string"
+                            },
+                            "vwap": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "runAfter": {
+                    "HTTP": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "ParseJson"
+            },
+            "Response": {
+                "inputs": {
+                    "body": "@outputs('Compose')",
+                    "statusCode": 200
+                },
+                "runAfter": {
+                    "Compose": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Response"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "parameters": {},
+        "triggers": {
+            "request": {
+                "inputs": {
+                    "method": "POST",
+                    "schema": {
+                        "properties": {
+                            "ticker": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "kind": "Http",
+                "type": "Request"
+            }
+        }
+    }
+}
