@@ -1,4 +1,4 @@
-# Serverless Demo
+# Serverless
 
 ## Create Bitstamp API abstraction via Logic App 
 1. Use the following body as sample playload for the HTTP trigger: `{ "ticker" : "btcusd" }`.
