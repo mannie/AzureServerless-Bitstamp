@@ -1,4 +1,5 @@
-# Serverless
+# Azure Serverless
+Use Logic Apps, Functions, and API Management to query the Bitstamp REST API.
 
 ## Create Bitstamp API abstraction via Logic App 
 1. Use the following body as sample playload for the HTTP trigger: `{ "ticker" : "btcusd" }`.
