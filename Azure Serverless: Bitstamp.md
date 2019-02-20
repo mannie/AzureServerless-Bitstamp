@@ -2,8 +2,9 @@
 Use Logic Apps, Functions, and API Management to query the Bitstamp REST API.
 
 ## Create Bitstamp API abstraction via Logic App 
-1. Use the following body as sample playload for the HTTP trigger: `{ "ticker" : "btcusd" }`.
-1. Add an HTTP action pointing to **https://www.bitstamp.net/api/v2/ticker/$ticker** where _$ticker_ is a dynamic parameter. 
+1. Create a Logic App in the portal; select the _Request-Response_ template for your Logic App.
+1. Update the schema of the HTTP trigger's body using the following as a sample body: `{ "ticker" : "btcusd" }`.
+1. Add an HTTP action pointing to **https://www.bitstamp.net/api/v2/ticker/$ticker** where _$ticker_ is the dynamic parameter from the previous step. 
 1. Parse the JSON response of the HTTP request (i.e. the result of the previous action).
 1. Compose the output payload using the format **`{ "last": $last , "open": $open, "timestamp": $timestamp }`** where
     * _$last_ is a dynamic parameter, converted to `float`;
