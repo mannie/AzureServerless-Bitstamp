@@ -18,9 +18,9 @@ Use Logic Apps, Functions, and API Management to query the Bitstamp REST API.
    }
    ```
    where
-    * _$last_ is a dynamic parameter, converted to `float`;
-    * _$open_ is a dynamic parameter, converted to `float`;
-    * _$timestamp_ is a dynamic parameter of type `string`;
+    * `$last` is a dynamic parameter, converted to `float`;
+    * `$open` is a dynamic parameter, converted to `float`;
+    * `$timestamp` is a dynamic parameter of type `string`;
 
 To test using other ticker symbols, refer to [Bitstamp](https://www.bitstamp.net) for the available options.
 
@@ -32,7 +32,10 @@ If you're looking to automate the deployment of the Logic App's JSON, verify tha
    ```json
    { "timestamp" : "1549991478" }
    ```
-   The response should be a string containing `2019-02-12T17:11:18Z`.
+   The response should be a string similar to:
+   ```
+   2019-02-12T17:11:18Z
+   ```
    
 ## Check a ticker's value on a schedule via Logic App 
 1. Add a recurring trigger to your Logic App.
