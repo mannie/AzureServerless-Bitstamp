@@ -7,7 +7,7 @@ Use Logic Apps, Functions, and API Management to query the Bitstamp REST API.
    ```json
    { "ticker" : "btcusd" }
    ```
-1. Add an HTTP action pointing to **https://www.bitstamp.net/api/v2/ticker/$ticker** where _$ticker_ is the dynamic parameter from the previous step. 
+1. Add an HTTP action pointing to **https://www.bitstamp.net/api/v2/ticker/$ticker** where `$ticker` is the dynamic parameter from the previous step. 
 1. Parse the JSON response of the HTTP request (i.e. the result of the previous action).
 1. Compose the output payload using the format
    ```json
