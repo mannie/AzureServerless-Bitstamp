@@ -28,11 +28,12 @@ If you're looking to automate the deployment of the Logic App's JSON, verify tha
 
 ## Create Function for timestamp conversion
 1. Update HTTP trigger Function with code from [Function-ConvertTimestamp.cs](#file-function-converttimestamp-cs).
-1. Test the function by making a `POST` request using the payload below; the response should be a string containing `2019-02-12T17:11:18Z`.
+1. Test the function by making a `POST` request using the payload: 
    ```json
    { "timestamp" : "1549991478" }
    ```
-
+   The response should be a string containing `2019-02-12T17:11:18Z`.
+   
 ## Check a ticker's value on a schedule via Logic App 
 1. Add a recurring trigger to your Logic App.
 1. Invoke the previously created Logic App, passing in your choice of value for _ticker_.  
